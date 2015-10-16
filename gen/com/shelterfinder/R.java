@@ -30,23 +30,30 @@ public final class R {
         public static final int user_avatar=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000b;
-        public static final int avatarUserImageView=0x7f080006;
-        public static final int emailEditText=0x7f080008;
-        public static final int fullNameEditText=0x7f080009;
+        public static final int action_settings=0x7f08000e;
+        public static final int avatarUserImageView=0x7f080008;
+        public static final int emailEditText=0x7f08000a;
+        public static final int fullNameEditText=0x7f08000b;
+        public static final int horizontalScrollView=0x7f080006;
         public static final int imageView1=0x7f080000;
         public static final int imageView2=0x7f080001;
         public static final int loginButton=0x7f080004;
         public static final int passwordEditText=0x7f080003;
         public static final int registerButton=0x7f080005;
-        public static final int retypeEditText=0x7f080007;
-        public static final int submitButton=0x7f08000a;
+        public static final int retypeEditText=0x7f080009;
+        public static final int submitButton=0x7f08000c;
+        public static final int textView1=0x7f08000d;
         public static final int usernameEditText=0x7f080002;
+        public static final int viewPager=0x7f080007;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_register=0x7f030002;
+        public static final int fragment_google_map=0x7f030003;
+        public static final int fragment_search=0x7f030004;
+        public static final int fragment_status=0x7f030005;
+        public static final int fragment_user=0x7f030006;
     }
     public static final class menu {
         public static final int login=0x7f070000;
