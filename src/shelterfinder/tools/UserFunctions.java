@@ -17,7 +17,7 @@ import android.content.Context;
 import android.util.Log;
 
 public class UserFunctions {
-	JSONParser jsonParser;
+	private JSONParser jsonParser;
 	public static final String USER_ID = "UserID";
 	public static final String USERNAME = "Username";
 	public static final String PASSWORD = "Password";

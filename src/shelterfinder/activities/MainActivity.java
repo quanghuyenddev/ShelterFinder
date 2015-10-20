@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shelterfinder.adapters.ShelterFinderPageAdapter;
+import shelterfinder.fragments.AboutFragment;
 import shelterfinder.fragments.GoogleMapFragment;
 import shelterfinder.fragments.SearchFragment;
 import shelterfinder.fragments.StatusFragment;
@@ -20,6 +21,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
@@ -30,6 +34,9 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
 		
 		initViewPager();
@@ -40,10 +47,12 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 		tabHost = (TabHost) findViewById(android.R.id.tabhost);
 		tabHost.setup();
 		String[] tabNames = {"Status", "Search", "GoogleMap", "User"}; 
+		int[] tabLogoIds = { R.drawable.ic_main, R.drawable.ic_search,
+				R.drawable.ic_google_map, R.drawable.ic_info };
 		for (int i = 0; i < tabNames.length; i++) {
 			TabHost.TabSpec tabSpec;
 			tabSpec = tabHost.newTabSpec(tabNames[i]);
-			tabSpec.setIndicator(tabNames[i]);
+			tabSpec.setIndicator("", getResources().getDrawable(tabLogoIds[i]));
 			tabSpec.setContent(new FakeContent(getApplicationContext()));
 			tabHost.addTab(tabSpec);
 		}
@@ -73,6 +82,7 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 		listFragments.add(new SearchFragment());
 		listFragments.add(new GoogleMapFragment());
 		listFragments.add(new UserFragment());
+		listFragments.add(new AboutFragment());
 		
 		ShelterFinderPageAdapter pageAdapter = new ShelterFinderPageAdapter(getSupportFragmentManager(), listFragments);
 		viewPager.setAdapter(pageAdapter);
@@ -97,7 +107,12 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 
 	@Override
 	public void onPageSelected(int selectedItem) {
-		tabHost.setCurrentTab(selectedItem);
+		if (selectedItem > 3) {
+			tabHost.setCurrentTab(3);
+		}
+		else {
+			tabHost.setCurrentTab(selectedItem);
+		}
 	}
 	
 	

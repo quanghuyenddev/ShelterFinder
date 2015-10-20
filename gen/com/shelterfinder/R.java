@@ -22,28 +22,48 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_facebook_normal=0x7f020000;
-        public static final int ic_facebook_pressed=0x7f020001;
-        public static final int ic_google_normal=0x7f020002;
-        public static final int ic_google_pressed=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int splash_screen=0x7f020005;
-        public static final int user_avatar=0x7f020006;
+        public static final int anh_1=0x7f020000;
+        public static final int anh_2=0x7f020001;
+        public static final int anh_3=0x7f020002;
+        public static final int anh_4=0x7f020003;
+        public static final int bg_parent_rounded_corner=0x7f020004;
+        public static final int ic_facebook_normal=0x7f020005;
+        public static final int ic_facebook_pressed=0x7f020006;
+        public static final int ic_google_map=0x7f020007;
+        public static final int ic_google_normal=0x7f020008;
+        public static final int ic_google_pressed=0x7f020009;
+        public static final int ic_info=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int ic_main=0x7f02000c;
+        public static final int ic_message=0x7f02000d;
+        public static final int ic_search=0x7f02000e;
+        public static final int splash_screen=0x7f02000f;
+        public static final int user_avatar=0x7f020010;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f080018;
         public static final int avatarUserImageView=0x7f080008;
         public static final int emailEditText=0x7f08000a;
         public static final int fullNameEditText=0x7f08000b;
+        public static final int getRoomsButton=0x7f08000e;
         public static final int horizontalScrollView=0x7f080006;
         public static final int imageView1=0x7f080000;
         public static final int imageView2=0x7f080001;
+        public static final int img_avatar=0x7f080010;
+        public static final int img_description=0x7f080016;
+        public static final int listview_status=0x7f08000f;
         public static final int loginButton=0x7f080004;
         public static final int passwordEditText=0x7f080003;
         public static final int registerButton=0x7f080005;
         public static final int retypeEditText=0x7f080009;
         public static final int submitButton=0x7f08000c;
         public static final int textView1=0x7f08000d;
+        public static final int txt_address=0x7f080013;
+        public static final int txt_area=0x7f080014;
+        public static final int txt_date_up=0x7f080012;
+        public static final int txt_price=0x7f080015;
+        public static final int txt_user_name=0x7f080011;
+        public static final int userAvatarImageView=0x7f080017;
         public static final int usernameEditText=0x7f080002;
         public static final int viewPager=0x7f080007;
     }
@@ -52,10 +72,12 @@ public final class R {
         public static final int activity_main=0x7f030001;
         public static final int activity_register=0x7f030002;
         public static final int activity_splash=0x7f030003;
-        public static final int fragment_google_map=0x7f030004;
-        public static final int fragment_search=0x7f030005;
-        public static final int fragment_status=0x7f030006;
-        public static final int fragment_user=0x7f030007;
+        public static final int fragment_about=0x7f030004;
+        public static final int fragment_google_map=0x7f030005;
+        public static final int fragment_search=0x7f030006;
+        public static final int fragment_status=0x7f030007;
+        public static final int fragment_status_item=0x7f030008;
+        public static final int fragment_user=0x7f030009;
     }
     public static final class menu {
         public static final int login=0x7f070000;
