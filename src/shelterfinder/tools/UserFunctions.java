@@ -101,5 +101,27 @@ public class UserFunctions {
 		
 		return false;
 	}
+	
+	// lấy thông tin user dựa vào id
+	public User getUserByID(String userID) {	
+		// xây dựng các giá trị gửi đi để đăng nhập
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("tag", Constants.GET_USER_BY_ID));
+		params.add(new BasicNameValuePair("userID", userID));
+		JSONObject json = jsonParser.getJSONFromUrl(Constants.HOST_URL, params);
+		
+		// phân tích đối tượng JSON thành một user
+		try {
+			User userLogin = new User();
+			userLogin.setUserId(Integer.parseInt(json.getString(USER_ID)));
+			userLogin.setFullName(json.getString(FULL_NAME));
+			userLogin.setAvatar(json.getString(AVATAR));
+			return userLogin;
+		}
+		catch (JSONException e) {
+			Log.e(getClass().getName(), "Lấy thông tin user thất bại!");
+			return null;
+		}
+	}
 
 }

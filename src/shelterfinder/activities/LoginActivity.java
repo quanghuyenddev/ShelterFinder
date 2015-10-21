@@ -1,6 +1,7 @@
 package shelterfinder.activities;
 
 import shelterfinder.objects.User;
+import shelterfinder.tools.Constants;
 import shelterfinder.tools.UserFunctions;
 
 import com.shelterfinder.R;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_login);
 		
 		loginButton = (Button) findViewById(R.id.loginButton);
@@ -55,6 +61,10 @@ public class LoginActivity extends Activity implements OnClickListener{
 		if (userLogin != null) {
 			Log.i(getClass().getName(), userLogin.toString());
 			Toast.makeText(getApplicationContext(), "Bạn đã đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+			MainActivity.userLogin = userLogin;
+			Intent data = new Intent();
+			data.putExtra("FullName", userLogin.getFullName());
+			setResult(Constants.GET_USER_LOGIN_CODE, data);
 			finish();
 		}
 		

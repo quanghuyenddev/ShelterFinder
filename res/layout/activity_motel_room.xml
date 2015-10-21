@@ -1,0 +1,155 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="shelterfinder.activities.MotelRoomActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"     
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_parent_rounded_corner"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/image_room"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:layout_margin="3dp"
+                android:src="@drawable/anh_4" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_parent_rounded_corner" >
+
+            <ImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                android:contentDescription="Avatar"
+                android:src="@drawable/ic_launcher" >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/img_avatar"
+                android:paddingLeft="5dp"
+                android:text="Le Viet Nhut" />
+
+            <TextView
+                android:id="@+id/txt_date_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:text="2000 years ago"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/txt_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_avatar"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Address: 47 Nguyen Luong Bang, Hoa Khanh, Da Nang" />
+
+            <TextView
+                android:id="@+id/txt_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_address"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Area: 25m2" />
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_area"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Price: 1300000/tháng" />
+            <TextView
+                android:id="@+id/txt_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_price"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Description: very big" />
+            <TextView
+                android:id="@+id/txt_phone_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_description"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="3dp"
+                android:text="Phone: 0000000000" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_parent_rounded_corner"
+            android:orientation="vertical" >
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:src="@drawable/google_map_img" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_parent_rounded_corner"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bình luận" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:layout_height="wrap_content"
+                android:text="Gửi" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

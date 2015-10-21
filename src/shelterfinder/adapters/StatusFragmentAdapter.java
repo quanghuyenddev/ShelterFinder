@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.shelterfinder.R;
 
 import shelterfinder.objects.StatusPost;
+import shelterfinder.tools.Constants;
+import shelterfinder.tools.ImageLoader;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,8 @@ public class StatusFragmentAdapter extends ArrayAdapter<StatusPost>{
 		this.layoutId=resource;
 		this.list=list;
 	}
+	
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		convertView = context.getLayoutInflater().inflate(layoutId, null);
@@ -42,7 +46,9 @@ public class StatusFragmentAdapter extends ArrayAdapter<StatusPost>{
 		txt_date_up_item.setText(status.getDateUp());
 		txt_area_item.setText("Diện tích: " + status.getArea());
 		txt_price_item.setText("Giá: " + status.getPrice());
-		img_description_item.setImageResource(status.getImagesDescription());
+		ImageLoader imageLoader = new ImageLoader(getContext());
+		imageLoader.DisplayImage(Constants.MOTELROOM_IMAGES_URL + status.getImagesDescription(), R.drawable.user_avatar, img_description_item);
+		// img_description_item.setImageResource(status.getImagesDescription());
 		
 		return convertView;
 	}

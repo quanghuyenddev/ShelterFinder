@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/shelterfinder/activities/LoginActivity.java=UTF-8
+encoding//src/shelterfinder/activities/MainActivity.java=UTF-8
+encoding//src/shelterfinder/activities/MotelRoomActivity.java=UTF-8
 encoding//src/shelterfinder/activities/RegisterActivity.java=UTF-8
 encoding//src/shelterfinder/adapters/StatusFragmentAdapter.java=UTF-8
 encoding//src/shelterfinder/fragments/SearchFragment.java=UTF-8

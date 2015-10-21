@@ -11,6 +11,8 @@ import shelterfinder.fragments.GoogleMapFragment;
 import shelterfinder.fragments.SearchFragment;
 import shelterfinder.fragments.StatusFragment;
 import shelterfinder.fragments.UserFragment;
+import shelterfinder.objects.User;
+import shelterfinder.tools.CheckNetwork;
 
 import com.shelterfinder.R;
 
@@ -25,22 +27,33 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 
 public class MainActivity extends FragmentActivity implements OnPageChangeListener, OnTabChangeListener {
 	ViewPager viewPager;
 	TabHost tabHost;
+	public static User userLogin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		if (!CheckNetwork.isOnline(this)) {
+			Toast.makeText(this, "Vui lòng kết nối mạng", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
 		
+		userLogin = null;
 		initViewPager();
 		initTabHost();
+	}
+	
+	public static User getUserLogin() {
+		return userLogin;
 	}
 	
 	private void initTabHost() {
@@ -78,14 +91,15 @@ public class MainActivity extends FragmentActivity implements OnPageChangeListen
 	private void initViewPager() {
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
 		List<Fragment> listFragments = new ArrayList<Fragment>();
-		listFragments.add(new StatusFragment());
-		listFragments.add(new SearchFragment());
-		listFragments.add(new GoogleMapFragment());
-		listFragments.add(new UserFragment());
-		listFragments.add(new AboutFragment());
+		listFragments.add(Fragment.instantiate(this, StatusFragment.class.getName()));
+		listFragments.add(Fragment.instantiate(this, SearchFragment.class.getName()));
+		listFragments.add(Fragment.instantiate(this, GoogleMapFragment.class.getName()));
+		listFragments.add(Fragment.instantiate(this, UserFragment.class.getName()));
+		listFragments.add(Fragment.instantiate(this, AboutFragment.class.getName()));
 		
 		ShelterFinderPageAdapter pageAdapter = new ShelterFinderPageAdapter(getSupportFragmentManager(), listFragments);
 		viewPager.setAdapter(pageAdapter);
+		viewPager.setOffscreenPageLimit(listFragments.size());
 		viewPager.setOnPageChangeListener(this);
 	}
 

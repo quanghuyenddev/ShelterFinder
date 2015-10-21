@@ -1,6 +1,8 @@
 package shelterfinder.objects;
 
-public class MotelRoom {
+import java.io.Serializable;
+
+public class MotelRoom implements Serializable{
 	private int motelRoomID;
 	private String address;
 	private double area;
