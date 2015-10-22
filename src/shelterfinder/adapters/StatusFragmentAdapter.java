@@ -7,6 +7,8 @@ import com.shelterfinder.R;
 import shelterfinder.objects.StatusPost;
 import shelterfinder.tools.Constants;
 import shelterfinder.tools.ImageLoader;
+import shelterfinder.tools.LoadImageTask;
+import shelterfinder.tools.UserFunctions;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,15 +42,21 @@ public class StatusFragmentAdapter extends ArrayAdapter<StatusPost>{
 		
 		StatusPost status = list.get(position);
 	
-		img_avatar_item.setImageResource(status.getImagesAvatar());
 		txt_user_name_item.setText(status.getUserName());
 		txt_address_item.setText("Địa chỉ: " + status.getAddress());
 		txt_date_up_item.setText(status.getDateUp());
-		txt_area_item.setText("Diện tích: " + status.getArea());
-		txt_price_item.setText("Giá: " + status.getPrice());
-		ImageLoader imageLoader = new ImageLoader(getContext());
-		imageLoader.DisplayImage(Constants.MOTELROOM_IMAGES_URL + status.getImagesDescription(), R.drawable.user_avatar, img_description_item);
-		// img_description_item.setImageResource(status.getImagesDescription());
+		txt_area_item.setText("Diện tích: " + status.getArea() + " mét vuông");
+		txt_price_item.setText("Giá: " + status.getPrice() + " đồng/tháng");
+		
+		new LoadImageTask(getContext(), img_avatar_item, R.drawable.user_avatar)
+				.execute(Constants.USER_AVATARS_URL + status.getImagesAvatar());
+		
+		new LoadImageTask(getContext(), img_description_item,
+				R.drawable.google_map_img)
+				.execute(Constants.MOTELROOM_IMAGES_URL
+						+ status.getImagesDescription());
+		
+
 		
 		return convertView;
 	}

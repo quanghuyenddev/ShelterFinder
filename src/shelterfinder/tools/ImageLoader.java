@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.ImageView;
   
 public class ImageLoader {
@@ -35,6 +36,7 @@ public class ImageLoader {
     public void DisplayImage(String url, int loader, ImageView imageView)
     {
         stub_id = loader;
+        Log.i(getClass().getName(), "Tải ảnh");
         imageViews.put(imageView, url);
         Bitmap bitmap=memoryCache.get(url);
         if(bitmap!=null)
@@ -42,7 +44,6 @@ public class ImageLoader {
         else
         {
             queuePhoto(url, imageView);
-            imageView.setImageResource(loader);
         }
     }
   

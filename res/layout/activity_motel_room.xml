@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<shelterfinder.tools.VerticalScrollview xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView1"
     android:layout_width="match_parent"
@@ -127,13 +127,18 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bình luận" />
 
+            <ListView
+                android:id="@+id/listview_comment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" >
+            </ListView>
+
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/edt_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10" >
@@ -142,7 +147,7 @@
             </EditText>
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/bt_send_comment"
                 android:layout_width="wrap_content"
                 android:layout_gravity="right"
                 android:layout_height="wrap_content"
@@ -152,4 +157,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</shelterfinder.tools.VerticalScrollview>

@@ -5,9 +5,10 @@
     android:background="@drawable/bg_parent_rounded_corner" >
     <ImageView
         android:id="@+id/img_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="5dp"
+        android:scaleType="fitXY"
         android:layout_marginTop="5dp"
         android:src="@drawable/ic_launcher"
         android:contentDescription="Avatar"
@@ -61,11 +62,12 @@
 
 	<ImageView
 	    android:id="@+id/img_description"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent"
+	    android:layout_height="200dp"
 	    android:layout_below="@+id/txt_price"
+	    android:scaleType="fitXY"
 	    android:layout_centerHorizontal="true"
-	    android:paddingBottom="20dp"
+	    android:padding="20dp"
 	    android:src="@drawable/ic_google_normal" />
 
 </RelativeLayout>

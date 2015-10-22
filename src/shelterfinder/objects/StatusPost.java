@@ -1,14 +1,14 @@
 package shelterfinder.objects;
 
 public class StatusPost {
-	private int imagesAvatar;
+	private String imagesAvatar;
 	private String userName;
 	private String dateUp;
 	private String address;
 	private String area;
 	private String price;
 	private String imagesDescription;
-	public int getImagesAvatar() {
+	public String getImagesAvatar() {
 		return imagesAvatar;
 	}
 	
@@ -28,7 +28,7 @@ public class StatusPost {
 		this.price = price;
 	}
 
-	public void setImagesAvatar(int imagesAvatar) {
+	public void setImagesAvatar(String imagesAvatar) {
 		this.imagesAvatar = imagesAvatar;
 	}
 	public String getDateUp() {
@@ -58,7 +58,7 @@ public class StatusPost {
 	public StatusPost(){
 		super();
 	}
-	public StatusPost(int imagesAvatar,String userName, String dateUp, String address,
+	public StatusPost(String imagesAvatar,String userName, String dateUp, String address,
 			String area, String price, String imagesDescription) {
 		super();
 		this.imagesAvatar = imagesAvatar;

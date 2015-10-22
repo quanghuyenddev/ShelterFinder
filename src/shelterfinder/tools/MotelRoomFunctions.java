@@ -8,6 +8,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import shelterfinder.objects.MotelRoom;
 
 public class MotelRoomFunctions {
@@ -25,6 +27,11 @@ public class MotelRoomFunctions {
 	public static final String TIME_POSTED = "TimePosted";
 	public static final String USER_ID_POSTED = "UserIDPosted";
 	public static final String IMAGES = "Images";
+	
+	// bình luận của phòng trọ
+	public static final String COMMENT_ID = "CommentID";
+	public static final String COMMENT = "Comment";
+	
 	
 	public MotelRoomFunctions() {
 		jsonParser = new JSONParser();
@@ -61,4 +68,27 @@ public class MotelRoomFunctions {
 		}
 		return motelRooms;
 	}
+	
+	public boolean submitCommentMotel(String comment, String userIDPosted, String motelRoomID) {
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("tag", Constants.SUBMIT_COMMENT_MOTEL));
+		params.add(new BasicNameValuePair("comment", COMMENT));
+		params.add(new BasicNameValuePair("userIDPosted", USER_ID_POSTED));
+		params.add(new BasicNameValuePair("motelRoomID", MOTEL_ROOM_ID));
+		JSONObject json = jsonParser.getJSONFromUrl(Constants.HOST_URL, params);
+		
+		// phân tích json trả về?
+		try {
+			if (Integer.parseInt(json.getString(Constants.RESPONSE_CODE)) == Constants.OK) {
+				return true;
+			}	
+		}
+		catch (Exception e) {
+			Log.e(getClass().getName(), "Lỗi đăng bình luận");
+		}
+		
+		return false;
+	}
+	
+	
 }

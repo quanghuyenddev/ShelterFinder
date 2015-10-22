@@ -9,8 +9,10 @@ import shelterfinder.activities.MotelRoomActivity;
 import shelterfinder.adapters.StatusFragmentAdapter;
 import shelterfinder.objects.MotelRoom;
 import shelterfinder.objects.StatusPost;
+import shelterfinder.objects.User;
 import shelterfinder.tools.CheckNetwork;
 import shelterfinder.tools.MotelRoomFunctions;
+import shelterfinder.tools.UserFunctions;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,6 +35,7 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 	StatusFragmentAdapter adapterStatus = null;
 	ArrayList<MotelRoom> motelRooms;
 	ArrayList<StatusPost> listStatus = new ArrayList<StatusPost>();
+	ArrayList<User> userPostedList = new ArrayList<User>();
 	
 	public StatusFragment() {
 		motelRooms = new ArrayList<MotelRoom>();
@@ -44,7 +47,11 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 		@Override
 		protected Void doInBackground(Void... params) {
 			MotelRoomFunctions motelRoomFunctions = new MotelRoomFunctions();
+			UserFunctions userFunctions = new UserFunctions();
 			motelRooms = motelRoomFunctions.getAllMotelRoom();
+			for (int i = 0; i < motelRooms.size(); i++) {
+				userPostedList.add(userFunctions.getUserByID(motelRooms.get(i).getUserIDPosted()));
+			}
 			return null;
 		}
 		
@@ -52,9 +59,10 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 		protected void onPostExecute(Void result) {
 			for (int i = 0; i < motelRooms.size(); i++) {
 				MotelRoom room = motelRooms.get(i);
+				User userPosted = userPostedList.get(i);
 				listStatus
-						.add(new StatusPost(R.drawable.ic_facebook_pressed,
-								"Hà Quang Huy", "12/12/2012", room
+						.add(new StatusPost(userPosted.getAvatar(),
+								userPosted.getFullName(), room.getTimePosted(), room
 										.getAddress(), room.getArea() + "", room
 										.getPrice() + "", room.getImages()));
 			}
