@@ -9,5 +9,6 @@
     <string name="title_activity_login2">Login2Activity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_motel_room">MotelRoomActivity</string>
+    <string name="title_activity_google_map">GoogleMapActivity</string>
 
 </resources>

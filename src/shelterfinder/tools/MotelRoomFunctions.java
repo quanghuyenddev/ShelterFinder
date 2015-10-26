@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import shelterfinder.objects.MotelRoom;
+import shelterfinder.objects.MotelRoomComment;
 
 public class MotelRoomFunctions {
 	private JSONParser jsonParser;
@@ -69,25 +70,54 @@ public class MotelRoomFunctions {
 		return motelRooms;
 	}
 	
-	public boolean submitCommentMotel(String comment, String userIDPosted, String motelRoomID) {
+	public MotelRoomComment submitCommentMotel(String comment, String userIDPosted, String motelRoomID) {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("tag", Constants.SUBMIT_COMMENT_MOTEL));
-		params.add(new BasicNameValuePair("comment", COMMENT));
-		params.add(new BasicNameValuePair("userIDPosted", USER_ID_POSTED));
-		params.add(new BasicNameValuePair("motelRoomID", MOTEL_ROOM_ID));
+		params.add(new BasicNameValuePair("comment", comment));
+		params.add(new BasicNameValuePair("userIDPosted", userIDPosted));
+		params.add(new BasicNameValuePair("motelRoomID", motelRoomID));
 		JSONObject json = jsonParser.getJSONFromUrl(Constants.HOST_URL, params);
 		
 		// phân tích json trả về?
 		try {
-			if (Integer.parseInt(json.getString(Constants.RESPONSE_CODE)) == Constants.OK) {
-				return true;
-			}	
+			MotelRoomComment commentMotel = new MotelRoomComment();
+			commentMotel.setCommentID(json.getString(COMMENT_ID));
+			commentMotel.setComment(json.getString(COMMENT));
+			commentMotel.setMotelRoomIDPosted(json.getString(MOTEL_ROOM_ID));
+			commentMotel.setTimePosted(json.getString(TIME_POSTED));
+			commentMotel.setUserIDPosted(json.getString(USER_ID_POSTED));
+			return commentMotel;
 		}
 		catch (Exception e) {
 			Log.e(getClass().getName(), "Lỗi đăng bình luận");
+			return null;
 		}
-		
-		return false;
+	}
+	
+	public ArrayList<MotelRoomComment> getCommentByMotelRoom(String motelRoomID) {
+		ArrayList<MotelRoomComment> comments = new ArrayList<MotelRoomComment>();
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("tag", Constants.GET_COMMENT_BY_MOTEL));
+		params.add(new BasicNameValuePair("motelRoomID", motelRoomID));
+		ArrayList<JSONObject> jsonCommentArray = jsonParser.getJSONArrayListFromUrl(
+				Constants.HOST_URL, params);
+		try {
+			int numComments = jsonCommentArray.size();
+			for (int i = 0; i < numComments; i++) {
+				JSONObject jsonComment = jsonCommentArray.get(i);
+				MotelRoomComment comment = new MotelRoomComment();
+				comment.setCommentID(jsonComment.getString(COMMENT_ID));
+				comment.setComment(jsonComment.getString(COMMENT));
+				comment.setTimePosted(jsonComment.getString(TIME_POSTED));
+				comment.setUserIDPosted(jsonComment.getString(USER_ID_POSTED));
+				comment.setMotelRoomIDPosted(jsonComment.getString(MOTEL_ROOM_ID));
+				comments.add(comment);
+			}
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return comments;
 	}
 	
 	

@@ -44,6 +44,7 @@ public class ImageLoader {
         else
         {
             queuePhoto(url, imageView);
+            
         }
     }
   

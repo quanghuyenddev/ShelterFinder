@@ -47,6 +47,8 @@ public class MotelRoomComment {
 		this.motelRoomIDPosted = motelRoomIDPosted;
 	}
 	
+	public MotelRoomComment() {
+	}
 	@Override
 	public String toString() {
 		return "MotelRoomComment [commentID=" + commentID + ", comment="

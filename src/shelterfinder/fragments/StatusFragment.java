@@ -28,6 +28,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StatusFragment extends Fragment implements OnItemClickListener {
@@ -36,14 +38,17 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 	ArrayList<MotelRoom> motelRooms;
 	ArrayList<StatusPost> listStatus = new ArrayList<StatusPost>();
 	ArrayList<User> userPostedList = new ArrayList<User>();
+	ProgressBar progressBar;
+	TextView textView;
 	
-	public StatusFragment() {
-		motelRooms = new ArrayList<MotelRoom>();
-		new LoadStatusPostTask().execute();
-	}
-
 	class LoadStatusPostTask extends AsyncTask<Void, Void, Void> {
 
+		@Override
+		protected void onPreExecute() {
+			progressBar.setVisibility(View.VISIBLE);
+			textView.setVisibility(View.VISIBLE);
+		}
+		
 		@Override
 		protected Void doInBackground(Void... params) {
 			MotelRoomFunctions motelRoomFunctions = new MotelRoomFunctions();
@@ -57,6 +62,8 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 		
 		@Override
 		protected void onPostExecute(Void result) {
+			progressBar.setVisibility(View.GONE);
+			textView.setVisibility(View.GONE);
 			for (int i = 0; i < motelRooms.size(); i++) {
 				MotelRoom room = motelRooms.get(i);
 				User userPosted = userPostedList.get(i);
@@ -75,9 +82,12 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+		motelRooms = new ArrayList<MotelRoom>();
 		View v = inflater.inflate(R.layout.fragment_status, container, false);
 		listViewStatus = (ListView) v.findViewById(R.id.listview_status);
+		progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+		textView = (TextView) v.findViewById(R.id.textView);
+		new LoadStatusPostTask().execute();
 		adapterStatus = new StatusFragmentAdapter(getActivity(),
 				R.layout.fragment_status_item, listStatus);
 		listViewStatus.setOnItemClickListener(this);

@@ -6,6 +6,7 @@ import shelterfinder.tools.UserFunctions;
 import com.shelterfinder.R;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -83,5 +84,5 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		}
 		
 	}
-
+	
 }

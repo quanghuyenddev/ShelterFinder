@@ -4,6 +4,7 @@ import shelterfinder.activities.LoginActivity;
 import shelterfinder.activities.MainActivity;
 import shelterfinder.objects.User;
 import shelterfinder.tools.Constants;
+import shelterfinder.tools.LoadImageTask;
 import android.R.color;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ import com.shelterfinder.R;
 public class UserFragment extends Fragment {
 	LinearLayout informationUserLayout;
 	TextView fullNameTextView;
+	ImageView ivAvatar;
 	@Override
 	@Nullable
 	public View onCreateView(LayoutInflater inflater,
@@ -31,6 +35,7 @@ public class UserFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_user, container, false);
 		informationUserLayout = (LinearLayout) view.findViewById(R.id.informationUserLayout);
 		fullNameTextView = (TextView) view.findViewById(R.id.fullNameTextView);
+		ivAvatar = (ImageView) view.findViewById(R.id.userAvatarImageView);
 		informationUserLayout.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -54,6 +59,10 @@ public class UserFragment extends Fragment {
 		if (requestCode == Constants.LOGIN_CODE) {
 			if (resultCode == Constants.GET_USER_LOGIN_CODE) {
 				fullNameTextView.setText(data.getStringExtra("FullName"));
+				new LoadImageTask(getActivity(), ivAvatar,
+						R.drawable.user_avatar)
+						.execute(Constants.USER_AVATARS_URL
+								+ data.getStringExtra("Avatar"));
 			}
 		}
 	}

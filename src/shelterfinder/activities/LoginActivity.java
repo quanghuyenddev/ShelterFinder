@@ -8,6 +8,7 @@ import com.shelterfinder.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -52,25 +53,36 @@ public class LoginActivity extends Activity implements OnClickListener{
 		}
 	}
 	
+	class LoginTask extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected Void doInBackground(Void... params) {
+			String username = usernameEditText.getText().toString().trim();
+			String password = passwordEditText.getText().toString().trim();
+			UserFunctions userFunctions = new UserFunctions();
+			MainActivity.userLogin = userFunctions.loginUser(username, password);
+			return null;
+		}
+		@Override
+		protected void onPostExecute(Void result) {
+			if (MainActivity.userLogin != null) {
+				Log.i(getClass().getName(), MainActivity.userLogin.toString());
+				Toast.makeText(getApplicationContext(), "Bạn đã đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+				Intent data = new Intent();
+				data.putExtra("FullName", MainActivity.userLogin.getFullName());
+				data.putExtra("Avatar", MainActivity.userLogin.getAvatar());
+				setResult(Constants.GET_USER_LOGIN_CODE, data);
+				finish();
+			}
+			
+			else {
+				Toast.makeText(getApplicationContext(), "Tài khoản hoặc mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+	
 	private void login() {
-		String username = usernameEditText.getText().toString().trim();
-		String password = passwordEditText.getText().toString().trim();
-		UserFunctions userFunctions = new UserFunctions();
-		User userLogin = userFunctions.loginUser(username, password);
-		// đăng nhập thành công
-		if (userLogin != null) {
-			Log.i(getClass().getName(), userLogin.toString());
-			Toast.makeText(getApplicationContext(), "Bạn đã đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-			MainActivity.userLogin = userLogin;
-			Intent data = new Intent();
-			data.putExtra("FullName", userLogin.getFullName());
-			setResult(Constants.GET_USER_LOGIN_CODE, data);
-			finish();
-		}
 		
-		else {
-			Toast.makeText(getApplicationContext(), "Tài khoản hoặc mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
-		}
+		new LoginTask().execute();
 	}
 	
 	private void register() {
