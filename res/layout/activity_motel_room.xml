@@ -33,7 +33,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/bg_parent_rounded_corner" >
 
-            <ImageView
+            <shelterfinder.tools.RoundedImageView
                 android:id="@+id/img_avatar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -41,8 +41,7 @@
                 android:layout_marginTop="5dp"
                 android:contentDescription="Avatar"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher" >
-            </ImageView>
+                android:src="@drawable/ic_launcher" />
 
             <TextView
                 android:id="@+id/txt_user_name"

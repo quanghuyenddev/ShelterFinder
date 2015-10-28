@@ -19,6 +19,7 @@ import android.widget.TextView;
 public class StatusFragmentAdapter extends ArrayAdapter<StatusPost>{
 	Activity context;
 	int layoutId;
+	int layoutId2;
 	ArrayList<StatusPost> list= null;
 	public StatusFragmentAdapter(Activity context, int resource,
 			ArrayList<StatusPost> list) {
@@ -27,7 +28,6 @@ public class StatusFragmentAdapter extends ArrayAdapter<StatusPost>{
 		this.layoutId=resource;
 		this.list=list;
 	}
-	
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -41,7 +41,6 @@ public class StatusFragmentAdapter extends ArrayAdapter<StatusPost>{
 		ImageView img_description_item = (ImageView) convertView.findViewById(R.id.img_description);
 		
 		StatusPost status = list.get(position);
-	
 		txt_user_name_item.setText(status.getUserName());
 		txt_address_item.setText("Địa chỉ: " + status.getAddress());
 		txt_date_up_item.setText(status.getDateUp());

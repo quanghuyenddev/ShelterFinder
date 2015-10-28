@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    android:id="@+id/linearlayout" 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*">
+	<TableRow 
+	    android:id="@+id/row1"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent">
+	    <TextView 
+	        android:id="@+id/tv_post_address"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Address : "
+	        android:layout_span="1"/>
+	    <EditText 
+	        android:id="@+id/ed_post_address"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:hint="Enter address"
+	        android:layout_span="10"/>
+	</TableRow>
+	
+	<TableRow 
+	    android:id="@+id/row2"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent">
+	    <TextView 
+	        android:id="@+id/tv_post_description"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Description : "
+	        android:layout_span="1"/>
+	    <EditText 
+	        android:id="@+id/ed_post_description"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:hint="Enter description"
+	        android:lines="3"
+	        android:gravity="top|left"
+	        android:layout_span="10"/>
+	</TableRow>
+	
+	<TableRow 
+	    android:id="@+id/row3"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent">
+	    <TextView 
+	        android:id="@+id/tv_post_price"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:text="Price : "
+	        android:layout_span="1"/>
+	    <EditText 
+	        android:id="@+id/ed_post_price"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:hint="Enter price"
+	        android:layout_span="10"/>
+	</TableRow>
+	<TableRow 
+	    android:id="@+id/row4"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent">
+	    <TextView 
+	        android:id="@+id/contact_phne"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Contact"
+	        android:textSize="16dp"/>
+	    <EditText
+	        android:id="@+id/ed_contact_phone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_span="10"
+	        android:ems="10"
+	        android:hint="Enter phone" />
+	    
+	</TableRow>
+	
+	<TableRow 
+	    android:id="@+id/row5"
+	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent">
+	    <TextView />
+	    <EditText 
+	        android:id="@+id/contact_address"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:hint="Enter address"
+	        android:layout_span="10"/>
+	</TableRow>
+</TableLayout>
+
+ 		<fragment
+ 		    android:id="@+id/post_map"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="160dp"
+ 		    class="com.google.android.gms.maps.MapFragment"
+ 		    android:layout_margin="5dp" />
+
+ 		<Button
+ 		    android:id="@+id/bt_submit"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:layout_margin="10dp"
+ 		    android:background="@drawable/bg_button"
+ 		    android:text="Submit" />
+
+</LinearLayout>

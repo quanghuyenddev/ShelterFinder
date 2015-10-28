@@ -1,8 +1,6 @@
 package shelterfinder.fragments;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import com.shelterfinder.R;
 
 import shelterfinder.activities.MotelRoomActivity;
@@ -10,14 +8,11 @@ import shelterfinder.adapters.StatusFragmentAdapter;
 import shelterfinder.objects.MotelRoom;
 import shelterfinder.objects.StatusPost;
 import shelterfinder.objects.User;
-import shelterfinder.tools.CheckNetwork;
 import shelterfinder.tools.MotelRoomFunctions;
 import shelterfinder.tools.UserFunctions;
 
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,10 +25,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class StatusFragment extends Fragment implements OnItemClickListener {
 	ListView listViewStatus;
+	ListView listPost;
 	StatusFragmentAdapter adapterStatus = null;
 	ArrayList<MotelRoom> motelRooms;
 	ArrayList<StatusPost> listStatus = new ArrayList<StatusPost>();
@@ -42,7 +37,6 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 	TextView textView;
 	
 	class LoadStatusPostTask extends AsyncTask<Void, Void, Void> {
-
 		@Override
 		protected void onPreExecute() {
 			progressBar.setVisibility(View.VISIBLE);
@@ -85,6 +79,7 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 		motelRooms = new ArrayList<MotelRoom>();
 		View v = inflater.inflate(R.layout.fragment_status, container, false);
 		listViewStatus = (ListView) v.findViewById(R.id.listview_status);
+		listPost= (ListView) v.findViewById(R.id.list_post);
 		progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 		textView = (TextView) v.findViewById(R.id.textView);
 		new LoadStatusPostTask().execute();
@@ -92,7 +87,6 @@ public class StatusFragment extends Fragment implements OnItemClickListener {
 				R.layout.fragment_status_item, listStatus);
 		listViewStatus.setOnItemClickListener(this);
 		listViewStatus.setAdapter(adapterStatus);
-		
 		return v;
 		
 	}
